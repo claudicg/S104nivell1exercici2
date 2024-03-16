@@ -1,43 +1,24 @@
 package n1exercici2.test;
 
+
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import n1exercici2.beans.CalculoDni;
 
 public class CalculoDniTest {
 	
-	CalculoDni dni = new CalculoDni();
 	
-	@Test
-	void testCalcularDni() {
+	@ParameterizedTest
+	@CsvSource(value ={"00904589:E","99465108:K", "64936738:X", "63876137:P","82795588:G", "64907716:Z"
+			, "09613184:N", "05306459:Z", "76217195:W", "93457746:Y"}, delimiter = ':')
+	void testCalcularDni2(String numeroDni, char lletraEsperada) {
 		
-		String lletraDni = "Q";
-		String resultat = dni.calcularLletraDni("20045781");
-		assertEquals(lletraDni, resultat);
+		CalculoDni dni = new CalculoDni();
+        
+		assertEquals(lletraEsperada, dni.calcularLletraDni(Integer.parseInt(numeroDni)));
+		
 	}
-	
-	
-	@Test
-	void testCalcularDni1() {
-		 
-		 CalculoDni llistaDni = new CalculoDni();
-		 List<String> llistaDnis = llistaDni.generarLListaDni();
-		 
-		
-		 String resultat;
-		 
-		 for(int i = 0; i < llistaDnis.size(); i++) {
-			 
-			 String lletraDni = llistaDnis.get(i).substring(8);
-			 String numeroDni = llistaDnis.get(i).substring(0, 8);
-			 resultat = dni.calcularLletraDni(numeroDni);		 
-			 assertEquals(lletraDni, resultat);
-		 }
-		 
-		 
-	 }	 
 }

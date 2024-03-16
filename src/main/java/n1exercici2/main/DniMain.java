@@ -6,7 +6,7 @@ public class DniMain {
 
 	public static void main(String[] args) {
 		
-		CalculoDni dni = new CalculoDni("20045781");
-		
+		CalculoDni dni = new CalculoDni();
+		dni.calcularLletraDni(20045781);
 	}
 }
